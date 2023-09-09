@@ -1,32 +1,49 @@
 package com.hcc.services;
 
-// import com.hcc.entities.User;
-// import com.hcc.repositories.UserRepository;
-// import com.hcc.utils.CustomPasswordEncoder;
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.security.core.userdetails.UserDetails;
-// import org.springframework.security.core.userdetails.UserDetailsService;
-// import org.springframework.security.core.userdetails.UsernameNotFoundException;
-//import org.springframework.security.crypto.password.PasswordEncoder;
+import com.hcc.entities.User;
+import com.hcc.repositories.UserRepository;
+import com.hcc.utils.CustomPasswordEncoder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+// uncomment this class once you have created all the needed parts
 
-// uncomment this class once you have created all of the needed parts
+// VERSION 1: found in forked clone
 //@Service
 //public class UserDetailServiceImpl implements UserDetailsService {
 //    @Autowired
 //    CustomPasswordEncoder passwordEncoder;
-
+//
 //    @Autowired
-    // UserRepository userRepo;
-
- //   @Override
+//     UserRepository userRepo;
+//
+//    @Override
 //    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-      //  Optional<User> userOpt = userRepo.findByUsername(username);
+//        Optional<User> user = userRepo.findByUsername(username); //was userOpt
 //        user.setUsername(username);
 //        user.setPassword(passwordEncoder.getPasswordEncoder().encode("asdfasdf"));
-      //  return userOpt.orElseThrow(() -> new UsernameNotFoundException("Invalid Credentials"));
+//        return user.orElseThrow(() -> new UsernameNotFoundException("Invalid Credentials")); //was userOpt
 //    }
 //}
+
+// VERSION 2: found in firstTicket
+@Service
+public class UserDetailServiceImpl implements UserDetailsService {
+    @Autowired
+    CustomPasswordEncoder passwordEncoder;
+
+    // Changed return type from UserDetails to User
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(passwordEncoder.getPasswordEncoder().encode("asdfasdf"));
+        return user;
+    }
+}
