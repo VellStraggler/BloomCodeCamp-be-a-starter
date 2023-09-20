@@ -22,20 +22,20 @@ public class Assignment {
 //    @Column(name = "user")
     @ManyToOne(optional = false)
     private User user;
-//    @Column(name = "code_reviewer")
-//    private User codeReviewer;
+    @Column(name = "code_reviewer")
+    private User codeReviewer;
 
     public Assignment(String status,
                       Integer number, String githubUrl,
                       String branch, String reviewVideoUrl,
-                      User user){//, User codeReviewer) {
+                      User user, User codeReviewer) {
         this.status = status;
         this.number = number;
         this.githubUrl = githubUrl;
         this.branch = branch;
         this.reviewVideoUrl = reviewVideoUrl;
         this.user = user;
-//        this.codeReviewer = codeReviewer;
+        this.codeReviewer = codeReviewer;
     }
     public Assignment() {}
 
@@ -95,11 +95,21 @@ public class Assignment {
         this.user = user;
     }
 
-//    public User getCodeReviewer() {
-//        return codeReviewer;
-//    }
-//
-//    public void setCodeReviewer(User codeReviewer) {
-//        this.codeReviewer = codeReviewer;
-//    }
+    public User getCodeReviewer() {
+        return codeReviewer;
+    }
+
+    public void setCodeReviewer(User codeReviewer) {
+        this.codeReviewer = codeReviewer;
+    }
+    //Unnecessary, Springboot handles JSON serialization automatically \/
+    public String toString() {
+        return "- Assignment Object -\nstatus: " + this.status +
+        "\nnumber: " + this.number +
+        "\ngithubUrl: " + githubUrl +
+        "\nbranch: " + branch +
+        "\nreviewVideoUrl: " + reviewVideoUrl +
+        "\nuser: " + user +
+        "\ncodeReviewer: " + codeReviewer;
+    }
 }

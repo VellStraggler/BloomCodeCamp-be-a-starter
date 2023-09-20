@@ -32,18 +32,20 @@ import java.util.Optional;
 //    }
 //}
 
-// VERSION 2: found in firstTicket
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
+//    @Autowired
+//    CustomPasswordEncoder passwordEncoder; //commented out for secondTicket
+
     @Autowired
-    CustomPasswordEncoder passwordEncoder;
+    UserRepository userRepo;
 
     // Changed return type from UserDetails to User
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(passwordEncoder.getPasswordEncoder().encode("asdfasdf"));
-        return user;
+        Optional<User> user = userRepo.findByUsername(username); //was userOpt
+//        user.setUsername(username);
+//        user.setPassword(passwordEncoder.getPasswordEncoder().encode("asdfasdf"));
+        return user.orElseThrow(() -> new UsernameNotFoundException("Invalid Credentials")); //was userOpt
     }
 }
