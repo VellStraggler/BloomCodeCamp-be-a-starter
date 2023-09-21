@@ -33,9 +33,8 @@ public class AuthorizationController {
             Authentication auth = manager.authenticate(new UsernamePasswordAuthenticationToken(
                     request.getUsername(), request.getPassword()));
             User user = (User)auth.getPrincipal();
-            user.setPassword(null);
             return ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION, util.generateToken(user))
-                    .body(user.getUsername());
+                    .body("\nLogged in with username: " + user.getUsername());
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }

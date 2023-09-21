@@ -29,7 +29,7 @@ public class SeedData implements CommandLineRunner {
     private void loadAuthorityData() {
         if(authRepo.count() == 0) {
             User user = userRepo.findByUsername("Dave").get();
-            Authority auth = new Authority("REVIEWER", user);
+            Authority auth = new Authority("ROLE_ADMIN", user);
 
             authRepo.save(auth);
         }
