@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+    <link rel ="stylesheet" type ="text/css" href="styles.css">
+    <script src = "https://unpkg.com/axios/dist/axios.min.js"</script>
+    <script src = "assignment-view.js"</script>
+</head>
+<body>
+    <h2>Assignment Turn-in</h2>
+    <section class = "body">
+            <div class = "asn">
+                <section>
+                    <h3 id = "assignment#" >Assignment #</h3>
+                    <input type = "text" required id = "assignment-number" title = "number">
+                </section>
+                <section>
+                    <h3 id = "status">Status Bubble</h3>
+                    <select name="assignments" id="assignments">
+                        <option value="">1A</option>
+                        <option value="1B">1B</option>
+                        <option value="2A">2A</option>
+                        <option value="3A">3A</option>
+                    </select>
+                </section>
+                <section>
+                    <h3>GitHub URL</h3>
+                    <input type="text" required id = "github url" autofocus title = "assignment">
+                </section>
+                <section>
+                    <h3>Branch</h3>
+                    <input type="text" required id = "branch" title = "assignment">
+                </section>
+                <section class = "submit">
+                    <input type = "submit" id = "submit">
+                    <a href="learner-dash.html">Back to Dashboard</a>
+                </section>
+            </div>
+    </section>
+    <footer>
+        NothingSpecial™ 2023
+    </footer>
+</body>
+</html>
